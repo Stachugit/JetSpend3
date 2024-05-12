@@ -34,19 +34,23 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
+fun ExpenseTracker(modifier: Modifier = Modifier) {
+    var expenses by remember { mutableStateOf(listOf<Expense>()) }
+
+    Column(modifier = modifier.padding(16.dp)) {
+        ExpenseInput(onAddExpense = { expense -> expenses = expenses + expense })
+        Spacer(modifier = Modifier.height(16.dp))
+        ExpenseList(expenses = expenses, onRemoveExpense = { expense -> expenses = expenses - expense })
+        Spacer(modifier = Modifier.height(16.dp))
+        Text(text = "Total:${expenses.sumByDouble { it.amount }} zł", style = MaterialTheme.typography.bodyLarge)
+    }
 }
 
 @Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
+fun DefaultPreview() {
     JetSpend3Theme {
-        Greeting("Android")
+        ExpenseTracker()
     }
 }
