@@ -34,6 +34,7 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
+data class Expense(val description: String, val amount: Double, val category: String)
 @Composable
 fun ExpenseTracker(modifier: Modifier = Modifier) {
     var expenses by remember { mutableStateOf(listOf<Expense>()) }
@@ -43,9 +44,43 @@ fun ExpenseTracker(modifier: Modifier = Modifier) {
         Spacer(modifier = Modifier.height(16.dp))
         ExpenseList(expenses = expenses, onRemoveExpense = { expense -> expenses = expenses - expense })
         Spacer(modifier = Modifier.height(16.dp))
-        Text(text = "Total:${expenses.sumByDouble { it.amount }} zł", style = MaterialTheme.typography.bodyLarge)
+        Text(text = "Suma:${expenses.sumByDouble { it.amount }} zł", style = MaterialTheme.typography.bodyLarge)
     }
 }
+
+@Composable
+fun ExpenseInput(onAddExpense: (Expense) -> Unit) {
+    var description by remember { mutableStateOf("") }
+    var amount by remember { mutableStateOf("") }
+    var category by remember { mutableStateOf("") }
+
+    Column {
+        OutlinedTextField(value = description, onValueChange = { description = it },
+            label = { Text("Opis") })
+        Spacer(modifier = Modifier.height(8.dp))
+        OutlinedTextField(
+            value = amount,
+            onValueChange = { amount = it },
+            label = { Text("Cena w zł") },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+        )
+        Spacer(modifier = Modifier.height(8.dp))
+        OutlinedTextField(value = category, onValueChange = { category = it },
+            label = { Text("Kategoria") })
+        Spacer(modifier = Modifier.height(8.dp))
+        Button(onClick = {
+            if (description.isNotEmpty() && amount.isNotEmpty() && category.isNotEmpty()) {
+                onAddExpense(Expense(description, amount.toDouble(), category))
+                description = ""
+                amount = ""
+                category = ""
+            }
+        }) {
+            Text("Dodaj wydatek")
+        }
+    }
+}
+
 
 @Preview(showBackground = true)
 @Composable
