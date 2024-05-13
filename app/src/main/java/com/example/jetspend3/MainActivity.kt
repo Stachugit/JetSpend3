@@ -80,7 +80,15 @@ fun ExpenseInput(onAddExpense: (Expense) -> Unit) {
         }
     }
 }
-
+@Composable
+fun ExpenseList(expenses: List<Expense>, onRemoveExpense: (Expense) -> Unit) {
+    LazyColumn {
+        items(expenses) { expense ->
+            ExpenseItem(expense = expense, onRemoveExpense = onRemoveExpense)
+            Text(text = "Kategoria: ${expense.category}", style = MaterialTheme.typography.bodyLarge)
+        }
+    }
+}
 
 @Preview(showBackground = true)
 @Composable
