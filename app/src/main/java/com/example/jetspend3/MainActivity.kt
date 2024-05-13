@@ -90,6 +90,28 @@ fun ExpenseList(expenses: List<Expense>, onRemoveExpense: (Expense) -> Unit) {
     }
 }
 
+@Composable
+fun ExpenseItem(expense: Expense, onRemoveExpense: (Expense) -> Unit) {
+    Column(
+        modifier = Modifier
+            .padding(vertical = 8.dp)
+            .fillMaxWidth(),
+        horizontalAlignment = Alignment.Start
+    ) {
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Text(text = expense.description)
+            Spacer(modifier = Modifier.width(16.dp))
+            Text(text = "${expense.amount} zł")
+            Spacer(modifier = Modifier.width(16.dp))
+            Button(onClick = { onRemoveExpense(expense) }) {
+                Text("Usuń")
+            }
+        }
+
+    }
+}
+
+
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
