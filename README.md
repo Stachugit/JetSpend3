@@ -32,11 +32,11 @@ JetSpend3 to aplikacja mobilna napisana w języku Kotlin przy użyciu Jetpack Co
 
 ## Zrzuty Ekranu
 
-![Ekran główny](screenshot1.png)
-![Dodawanie wydatku](screenshot2.png)
+![Ekran główny](resized1.png)
+![Dodawanie wydatku](resized2.png)
 
 
-![](nerd.gif) ![](nerd.gif) ![](nerd.gif) ![](nerd.gif)
+![](nerd.gif) ![](nerd.gif) ![](nerd.gif) ![](nerd.gif) ![](nerd.gif) ![](nerd.gif) ![](nerd.gif)
 
 
 
