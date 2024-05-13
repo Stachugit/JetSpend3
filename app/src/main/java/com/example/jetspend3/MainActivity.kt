@@ -44,7 +44,7 @@ fun ExpenseTracker(modifier: Modifier = Modifier) {
         Spacer(modifier = Modifier.height(16.dp))
         ExpenseList(expenses = expenses, onRemoveExpense = { expense -> expenses = expenses - expense })
         Spacer(modifier = Modifier.height(16.dp))
-        Text(text = "Suma:${expenses.sumByDouble { it.amount }} zł", style = MaterialTheme.typography.bodyLarge)
+        Text(text = "Suma: ${expenses.sumByDouble { it.amount }} zł", style = MaterialTheme.typography.bodyLarge)
     }
 }
 
